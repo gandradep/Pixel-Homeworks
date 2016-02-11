@@ -1,0 +1,46 @@
+//Using the class example change_with_sine.
+int cellSize= 18;                  // the size of each element
+float count = 0;
+float distanceToMouse;
+int mouse = 1;
+
+void setup() {
+  size(displayWidth, displayHeight);
+  
+}
+
+void draw() {
+  background (0);  
+  count++;
+  for (int x = -200; x < width+200; x+=cellSize) {
+    for (int y = 0; y < height; y+=cellSize) {  
+      switch(mouse){
+      case 1:
+      distanceToMouse= (dist(mouseX+200, mouseY, width, y) + count)/30;   //this one uses the mouse as center and adds incremental growth
+      break;
+      
+      case -1:
+      distanceToMouse= (dist(mouseX+200, mouseY, x, height) + count)/30;   //this one uses the mouse as center and adds incremental growth
+    break;  
+    }
+      
+   
+      //float newGray= (x+ mouseX)/50.0;             // get a number that correlates to the X position and the mouse X
+      float x1 = noise(count/100);
+      x1 = map(x1,0,1,-200,200);
+      float n = float(x)+x1;      //nueva x con perlin noise added
+   
+      
+      float newGray= map(sin(distanceToMouse),-1,1,0,45);       // get the sinus of the number in order to get a value that has a gratious movement
+
+      colorMode(HSB,360,100,100);
+      noStroke();
+      fill(newGray,100,100);                               // sin() values go from -1 to 1 so we map that to 0 - 255
+      rect(n, y, cellSize , cellSize );
+    }
+  }
+}
+void mouseClicked() {
+ mouse = -mouse;
+ println(mouse);
+}
