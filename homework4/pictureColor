@@ -1,4 +1,4 @@
-//For this project Im uploading 20 images, so be sure to have some in you data folder of the program
+//IN PROCESSING: For this project Im uploading 20 images, so be sure to have some in you data folder of the program
 PImage[] images = new PImage[20];
 int R, G, B, A;
 int currentImage;
